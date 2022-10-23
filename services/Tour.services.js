@@ -16,16 +16,23 @@ exports.createTourService=async(data)=>{
     return result;
 };
 
+exports.getTourDetailService=async(tourId)=>{
+    const tourDetail=await Tour.findOne({_id:tourId});
+    return tourDetail;
+};
+
 //Get three trending tours service
 exports.getThreeTrendingToursService=async()=>{
-    const tour = await Tour.find().limit(3);
+    const tour = await Tour.find()
+    .sort({price:-1})
+    .limit(3);
     return tour;
 };
 
 //Get three cheapest tours service
-exports.getThreeCheapestToursService = async (query) => {
-    const tour = await Tour.find({ price: { $lt: 7000 } })
-      .limit(3)
-      .sort({ price: 1 });
+exports.getThreeCheapestToursService = async () => {
+    const tour = await Tour.find()
+    .sort({ price: 1 })
+    .limit(3)
     return tour;
   };

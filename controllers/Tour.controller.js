@@ -1,5 +1,6 @@
-const { createTourService, getTourService, getThreeTrendingToursService, getThreeCheapestToursService } = require("../services/Tour.services");
+const { createTourService, getTourService, getThreeTrendingToursService, getThreeCheapestToursService, getTourDetailService } = require("../services/Tour.services");
 
+//Getting All Tours
 exports.getTours=async(req,res,next)=>{
     try {
         const filters = { ...req.query };
@@ -38,6 +39,7 @@ exports.getTours=async(req,res,next)=>{
 }
 };
 
+// Create new tour
 exports.createTours=async(req,res,next)=>{
 try {
     const result=await createTourService(req.body);
@@ -56,10 +58,26 @@ try {
 };
 
 
+//Getting Tour Details
+exports.tourDetails = async (req, res, next) => {
+    const { id } = req.params;
+    const detail = await getTourDetailService(id);
+    try {
+      res.status(200).json({ 
+        status: "Success!", 
+        data: detail });
+    } catch (error) {
+      res.status(400).json({ 
+        status: "Failed", 
+        error: error.message });
+    }
+  };
+
+
 //Getting Top 3 Trending Tours
 exports.getThreeTrendingTours=async(req,res,next)=>{
     try {
-    const tours = await getThreeTrendingToursService(req.query);
+    const tours = await getThreeTrendingToursService();
     res.status(200).json({ 
         status: "Success!", 
         data: tours 
@@ -72,10 +90,10 @@ exports.getThreeTrendingTours=async(req,res,next)=>{
 }
 };
 
-//Getting Top 3 Trending Tours
+//Getting Top 3 cheapest Tours
 exports.getThreeCheapestTours=async(req,res,next)=>{
     try {
-    const tours = await getThreeCheapestToursService(req.query);
+    const tours = await getThreeCheapestToursService();
     res.status(200).json({ 
         status: "Success!", 
         data: tours 
