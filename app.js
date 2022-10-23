@@ -10,7 +10,7 @@ app.use(express.json());
 
 // Home Page
 app.get('/',(req,res)=>{
-    res.send('Yeah..!!! Route is working for Tour Management');
+    res.send('Yeah..!!! Route is working for Tour Management System');
 });
 
 //post and read data from database
