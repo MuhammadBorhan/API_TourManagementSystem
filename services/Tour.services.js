@@ -14,4 +14,9 @@ return { totalTours,pageCount,tours };
 exports.createTourService=async(data)=>{
     const result=await Tour.create(data);
     return result;
-}
+};
+
+exports.getThreeTrendingToursService=async()=>{
+    const tour = await Tour.find().limit(3);
+    return tour;
+};
