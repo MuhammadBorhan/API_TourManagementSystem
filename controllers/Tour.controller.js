@@ -1,4 +1,4 @@
-const { createTourService, getTourService, getThreeTrendingToursService } = require("../services/Tour.services");
+const { createTourService, getTourService, getThreeTrendingToursService, getThreeCheapestToursService } = require("../services/Tour.services");
 
 exports.getTours=async(req,res,next)=>{
     try {
@@ -58,8 +58,24 @@ try {
 
 //Getting Top 3 Trending Tours
 exports.getThreeTrendingTours=async(req,res,next)=>{
-try {
+    try {
     const tours = await getThreeTrendingToursService(req.query);
+    res.status(200).json({ 
+        status: "Success!", 
+        data: tours 
+    });
+} catch (error) {
+    res.status(400).json({ 
+        status: "Failed", 
+        error: error.message 
+    });
+}
+};
+
+//Getting Top 3 Trending Tours
+exports.getThreeCheapestTours=async(req,res,next)=>{
+    try {
+    const tours = await getThreeCheapestToursService(req.query);
     res.status(200).json({ 
         status: "Success!", 
         data: tours 
