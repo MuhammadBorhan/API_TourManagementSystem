@@ -23,8 +23,12 @@ const tourSchema=mongoose.Schema({
         required: [true, "Please provide a price for this tour"],
         min: [0, "Cost can't be negative"],
       },
-      catagory: {
-        type: String,
-        required: [true, "Please provide a catagory for this tour"],
-      },
-},{ timestamps: true })
+    //   catagory: {
+    //     type: String,
+    //     required: [true, "Please provide a catagory for this tour"],
+    //   },
+},{ timestamps: true });
+
+// Creating Model
+const Tour=mongoose.model("Tour",tourSchema);
+module.exports=Tour
