@@ -1,4 +1,4 @@
-const { getTours, createTours, getThreeTrendingTours, getThreeCheapestTours, tourDetails } = require('../controllers/Tour.controller');
+const { getTours, createTours, getThreeTrendingTours, getThreeCheapestTours, tourDetails, updateTourDetails } = require('../controllers/Tour.controller');
 const { viewCount } = require('../middleware/ViewCount');
 
 const router=require('express').Router();
@@ -11,6 +11,7 @@ router.route('/')
 .post(createTours)
 
 router.route("/:id")
-.get(viewCount, tourDetails);
+.get(viewCount, tourDetails)
+.patch(updateTourDetails)
 
 module.exports=router

@@ -21,6 +21,16 @@ exports.getTourDetailService=async(tourId)=>{
     return tourDetail;
 };
 
+//Update Tour
+exports.updateTourService = async (tourId, data) => {
+    const tour = await Tour.updateOne(
+      { _id: tourId },
+      { $set: data },
+      { runValidators: true }
+    );
+    return tour;
+  };
+
 //Get three trending tours service
 exports.getThreeTrendingToursService=async()=>{
     const tour = await Tour.find()

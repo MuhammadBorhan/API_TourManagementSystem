@@ -6,5 +6,6 @@ exports.viewCount = async (req, res, next) => {
   const detail = await getTourDetailService(id);
   count++;
   detail.count = count;
+  console.log(count,detail)
   next();
 };
