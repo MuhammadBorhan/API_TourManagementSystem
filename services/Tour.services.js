@@ -31,6 +31,13 @@ exports.updateTourService = async (tourId, data) => {
     return tour;
   };
 
+
+//Delete Tour by one id 
+exports.deleteTourService = async (tourId) => {
+    const tour = await Tour.deleteOne({_id:tourId});
+    return tour;
+  };
+
 //Get three trending tours service
 exports.getThreeTrendingToursService=async()=>{
     const tour = await Tour.find()

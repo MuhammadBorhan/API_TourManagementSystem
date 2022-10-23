@@ -1,4 +1,4 @@
-const { getTours, createTours, getThreeTrendingTours, getThreeCheapestTours, tourDetails, updateTourDetails } = require('../controllers/Tour.controller');
+const { getTours, createTours, getThreeTrendingTours, getThreeCheapestTours, tourDetails, updateTourDetails, deleteTourByOne } = require('../controllers/Tour.controller');
 const { viewCount } = require('../middleware/ViewCount');
 
 const router=require('express').Router();
@@ -13,5 +13,6 @@ router.route('/')
 router.route("/:id")
 .get(viewCount, tourDetails)
 .patch(updateTourDetails)
+.delete(deleteTourByOne)
 
 module.exports=router
