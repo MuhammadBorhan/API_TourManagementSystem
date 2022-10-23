@@ -18,10 +18,10 @@ const tourSchema=mongoose.Schema({
         type: String,
         required: true,
       },
-      cost: {
+      price: {
         type: Number,
         required: [true, "Please provide a price for this tour"],
-        min: [0, "Cost can't be negative"],
+        min: [0, "price can't be negative"],
       },
     //   catagory: {
     //     type: String,
