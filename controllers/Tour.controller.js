@@ -2,10 +2,10 @@ const { createTourService, getTourService } = require("../services/Tour.services
 
 exports.getTours=async(req,res,next)=>{
     try {
-        const queryFilter = { ...req.query };
+        const filters = { ...req.query };
 
   const excluedFields = ["sort", "page","limit"];
-  excluedFields.forEach((field) => delete queryFilter[field]);
+  excluedFields.forEach((field) => delete filters[field]);
 
   const queries = {};
 
@@ -23,7 +23,7 @@ exports.getTours=async(req,res,next)=>{
     queries.skip = skip;
     queries.limit = parseInt(limit);
   }
-    const tours=await getTourService(queryFilter,queries)
+    const tours=await getTourService(filters,queries)
     res.status(200).json({
         status: 'Successful',
         data: tours
